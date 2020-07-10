@@ -21,6 +21,7 @@
 		<ul class="navbar-nav">
 			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/member/list.jsp">Member</a></li>
 			<li class="nav-item"><a class="nav-link active" href="${pageContext.request.contextPath }/todo/list.jsp">Todo</a></li>
+			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/board/list.jsp">Board</a></li>
 		</ul>
 	</div>
 
@@ -29,6 +30,12 @@
 	List<TodoDto> list = dao.getList();
 %>
 	<div class="container">
+		<br />
+		<br />
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="../index.jsp">Home</a></li>
+			<li class="breadcrumb-item">할 일 목록</li>
+		</ol>	
 		<br />
 		<p class="font-weight-light text-primary" style="font-size: xx-large;">
 		<i class="fas fa-clipboard-list"></i> 할 일 목록 </p>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>Web06_Filter</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <!-- 인코딩 필터 정의하기 (Tomcat 웹서버에 알리기) -->
+  <filter>
+  	<filter-name>EncodingFilter</filter-name> <!-- 필터 이름 : 맘대로 지을 수 있음 -->
+  	<filter-class>test.filter.EncodingFilter</filter-class> <!-- class -->
+  	<init-param><!-- 초기화 파라미터 -->
+  		<param-name>encoding</param-name>
+  		<param-value>utf-8</param-value> <!-- 초기화 파라미터 -->
+  	</init-param>
+  </filter>
+  <!-- 인코딩 필터 맵핑하기 (어떤 요청에 대해서 필터가 동작할 지 알리기) -->
+  <filter-mapping>
+  	<filter-name>EncodingFilter</filter-name> <!-- 필터 이름 : 위의 filter-name과 똑같아야한다. -->
+  	<url-pattern>/*</url-pattern> <!-- /* 모든 요청 의미 -->
+  </filter-mapping>
+ 
+
+</web-app>
+<!-- 
+	welcom-file은 웹에서 최초 요청이 왔을 때 들어가는 곳.
+	위에서 부터 차례로 찾아서 내려온다(html이 없으면 htm, htm도 없으면 jsp.... 이런 식으로)	
+	xml을 수정하는게 class 수정보다 더 쉬움. 컴파일 다시 안해도 되구... 
+	그냥 서버 시작할 때 공통적으로 처리할 것들 다 처리시키고... 나머지 요청 ㄱㄱ하는게 더 편함
+ -->

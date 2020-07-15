@@ -6,16 +6,18 @@ public class UsersDto {
 	private String email;
 	private String profile;
 	private String regdate;
+	private String newpwd; //수정할 새 비밀번호
 	
 	public UsersDto() {}
 
-	public UsersDto(String id, String pwd, String email, String profile, String regdate) {
+	public UsersDto(String id, String pwd, String email, String profile, String regdate, String newpwd) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
 		this.email = email;
 		this.profile = profile;
 		this.regdate = regdate;
+		this.newpwd = newpwd;
 	}
 
 	public String getId() {
@@ -56,5 +58,13 @@ public class UsersDto {
 
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
+	}
+
+	public String getNewpwd() {
+		return newpwd;
+	}
+
+	public void setNewpwd(String newpwd) {
+		this.newpwd = newpwd;
 	}
 }

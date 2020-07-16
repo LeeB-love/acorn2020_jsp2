@@ -14,6 +14,9 @@
 		1. method="post"
 		2. enctype="multipart/form-data" 속성추가
 		3. <input type="file" />을 이용한다.
+		4. 파일을 업로드 할 폴더를 미리 만들어준다.
+		5. upload처리하기 위해서 필요한 라이브러리 : commons jar파일 두 개  
+		6. upload.jsp 설정 
 	 --%>
 	<form action="upload.jsp" method="post" enctype="multipart/form-data"> <%--file 타입이 있는 경우엔 폼 전송방식이 좀 다르다. enctype을 추가해주어야함. --%>
 		<%--그리고 lib 폴더에 commons파일 두 개 붙여넣기 --%>

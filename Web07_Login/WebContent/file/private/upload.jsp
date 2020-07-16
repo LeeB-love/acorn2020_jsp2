@@ -20,7 +20,7 @@
 	
     //실제로 업로드한 파일이 있는지 체크 한다.
     if (!ServletFileUpload.isMultipartContent(request)) {
-        //업로드한 파일이 없다면 예외 처리를 한다. 
+        //업로드한 파일이 없다면 예외 처리를 한다. ===> 파일 업로드가 되지 않았을 때 에러 처리를 여기서 한다. 상황에 맞게 응답하기
         PrintWriter writer = response.getWriter();
         writer.println("Error: Form must has enctype=multipart/form-data.");
         writer.flush();
@@ -39,7 +39,7 @@
     // sets maximum size of request (include file + form data)
     upload.setSizeMax(MAX_REQUEST_SIZE);
 
-    //WebContent 하위의 upload 폴더 절대 경로 얻어오기 
+    //WebContent 하위의 upload 폴더 절대 경로 얻어오기 - 저장될 폴더명 명시
     String uploadPath = application.getRealPath("/upload");
     //업로드 경로를 서버측 콘솔에 출력하기
     System.out.println(uploadPath);
@@ -54,7 +54,9 @@
         List<FileItem> formItems = upload.parseRequest(request);
         //폼전송된 아이템이 존재 한다면 
         if (formItems != null && formItems.size() > 0) {
-        	//파일 정보를 담을 Dto 객체 생성
+        	
+        	
+        	//파일 정보를 담을 Dto 객체 생성 =============> 프로젝트의 상황에 맞게 코딩
         	FileDto dto=new FileDto();
         	//로그인된 아이디(파일의 작성자)
         	String id=(String)session.getAttribute("id");
@@ -83,7 +85,7 @@
                     
                 }else{//폼 필드라면 
                 
-                	if(item.getFieldName().equals("title")){
+                	if(item.getFieldName().equals("title")){   //==============> 상황에 맞게 코딩
                 		//제목 읽어오기
                 		String title=item.getString("utf-8");
                 		dto.setTitle(title);

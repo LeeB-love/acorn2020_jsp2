@@ -6,9 +6,16 @@
 	String id = (String)session.getAttribute("id");
 	//수정할 이메일 주소
 	String email = request.getParameter("email");
+	//수정할 프로필
+	String profile = request.getParameter("profile");
+	if(profile.equals("null")){
+		profile=null;
+	}
+	
 	UsersDto dto = new UsersDto();
 	dto.setId(id);
 	dto.setEmail(email);
+	dto.setProfile(profile);
 	boolean isSuccess = UsersDao.getInstance().update(dto);
 %>
 <!DOCTYPE html>

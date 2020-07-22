@@ -11,10 +11,22 @@
 <head>
 <meta charset="UTF-8">
 <title>/users/private/info.jsp</title>
+<style>
+	#profileImage{
+		width : 150px;
+		height : 150px;
+		border : 1px soled #cecece;
+		border-radius : 50%;
+	}
+</style>
 </head>
 <body>
 	<h1>회원 정보 페이지입니다.</h1>
 	<table>
+		<tr>
+			<th>프로필 이미지</th>
+			<td><img id="profileImage" src="${pageContext.request.contextPath }<%=dto.getProfile() %>"/></td>
+		</tr>
 		<tr>
 			<th>아이디</th>
 			<td><%=id %></td>

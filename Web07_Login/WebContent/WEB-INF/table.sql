@@ -1,3 +1,13 @@
+create table board_gallery(
+	num number primary key,
+	writer varchar2(100),
+	caption varchar2(100),
+	imagePath varchar2(100),
+	regdate date
+);
+
+create sequence board_gallery_seq;
+
 -- 사용자(회원) 정보를 저장할 테이블
 create table users(
 	id varchar2(100) primary key,

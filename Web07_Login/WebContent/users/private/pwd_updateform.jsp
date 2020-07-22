@@ -18,7 +18,7 @@
 	<form action="pwd_update.jsp" method="post" id="myForm">
 		<div class="form-group">
 			<label for="pwd">기존 비밀번호</label>
-			<input type="text" name="pwd" id="pwd" value = <%=dto.getPwd() %>/>
+			<input type="text" name="pwd" id="pwd" value = "<%=dto.getPwd() %>"/>
 		</div>
 		<div class="form-group">
 			<label for="newPwd">새 비밀번호</label>

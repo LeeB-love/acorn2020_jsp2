@@ -13,14 +13,14 @@
 <meta charset="UTF-8">
 <title>/users/private/updateform.jsp</title>
 <style>
-	/* 프로필 업로드 폼을 화면에서 숨긴다. */
+	/* 프로필 업로드 폼 숨기기 */
 	#profileForm{
 		display:none;
 	}
 	/* 이미지를 작은 원형으로 만든다. */
 	#profileImage{
-		width : 100px;
-		height : 100px;
+		width : 150px;
+		height : 150px;
 		border : 1px soled #cecece;
 		border-radius : 50%;
 		curser : pointer;
@@ -30,11 +30,16 @@
 <body>
 <div class="container">
 	<h1>회원정보 수정 폼 입니다.</h1>
+	
+	<!-- 프로필 이미지가 null일 경우 대비 -->
 	<% if(dto.getProfile()==null){%>
-		<img id="profileImage" src="${pageContext.request.contextPath }/images/yellowbird.png" /> <%-- 기본이미지 --%>
+		<a id="profileLink" href="javascript:"><img id="profileImage" src="${pageContext.request.contextPath }/images/yellowbird.png" /></a> <%-- 기본이미지 --%>
 	<%}else{ %>
-		<img src="${pageContext.request.contextPath }<%=dto.getProfile() %>"/>
+		<a id="profileLink" href="javascript:"><img id="profileImage" src="${pageContext.request.contextPath }<%=dto.getProfile() %>"/></a>
 	<%} %>
+	
+	
+	<!-- 아이디, 이메일 업로드 폼 -->
 	<form action="update.jsp" method="post">
 		<input type="hidden" name="profile" id="profile" value="<%=dto.getProfile()%>"/>
 		<div class="form-group">
@@ -48,15 +53,22 @@
 		<button type="submit">수정</button>
 		<button type="reset">취소</button>
 	</form>
+	
+	
+	
+	<!-- 프로필 이미지 업로드 폼 -->
 	<form action="profile_upload.jsp" method="post" enctype="multipart/form-data" id="profileForm">
 		<input type="file" name="image" accept=".jpg, .jpeg, .png, .JPG, .JPEG" id="image" />
 	</form>
+	
+	
+	
 </div>
 <script src="${pageContext.request.contextPath }/js/jquery-3.5.1.js"></script>
 <script src="${pageContext.request.contextPath }/js/jquery.form.min.js"></script>
 <script>
-	// 프로필 이미지를 클릭했을 때 실행할 함수 등록
-	$("#profileImage").on("click", function(){
+	// 프로필 이미지를 클릭했을 때 실행할 함수 등록	
+	$("#profileLink").on("click", function(){
 		//input type="file"을 강제 클릭한다. => 원하는 이미지가 선택되면 이미지가 input 되는 시점에 change event가 일어난다. event가 일어나면 바로 제출
 		$("#image").click();
 	})

@@ -10,29 +10,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-   .page-display a{
-      text-decoration: none;
-      color: #000;
-   }
-
-   .page-display ul li{
-      float: left; /* 가로로 쌓이게*/
-      list-style-type: none; /* disc 사라지게 */
-      margin-right: 10px; /* 오른쪽 마진 */
-   }
-   
-   .page-display ul li.active{
-      /*li 요소이면서 active 클래스를 가지고 있는 요소*/
-      text-decoration: underline;
-      font-weight: bold;
-   }
-   
-   .page-display ul li.active a{
-      color: red;
-   }
-   
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 <body>
 <%--글번호는 연속적이지 않고, 삭제되기도 하기 때문에 페이징처리에 사용하기엔 적합하지 않다. 따라서 정렬한 뒤 , rownum을 부여하고 
@@ -133,8 +112,8 @@
    <div class="container">
       <a href="private/upload_form.jsp">파일 업로드</a>
       <h1>파일 목록입니다.</h1>
-      <table>
-         <thead>
+      <table class="table table-striped table-sm">
+         <thead class="thead-dark">
             <tr>
                <th>번호</th>
                <th>작성자</th>
@@ -167,21 +146,21 @@
          </tbody>
       </table>
       <div class="page-display">
-         <ul>
-         <%if(startPageNum != 1){ %>
-         	<li><a href="list.jsp?pageNum=<%=startPageNum-1%>&condition=<%=condition %>&keyword=<%= encodedK%>">prev</a></li> <%-- 검색 keyword는 그대로 출력하지 말고 인코딩을 한 뒤에 출력한다.--%>
-         <%} %>
-            <%for(int i=startPageNum; i<=endPageNum; i++){ %>
-               <%if(i==pageNum){ %>
-                  <li class="active"><a href="list.jsp?pageNum=<%=i%>&condition=<%=condition %>&keyword=<%= encodedK%>"><%=i %></a></li>
-               <%} else{%>
-                  <li><a href="list.jsp?pageNum=<%=i%>&condition=<%=condition %>&keyword=<%= encodedK%>"><%=i %></a></li>
-               <%} %>
-            <%} %>
-           <%if(endPageNum < totalPageCount){ %>
-           		<li><a href="list.jsp?pageNum=<%=endPageNum+1 %>&condition=<%=condition %>&keyword=<%= encodedK%>">Next</a></li>
-           <%} %>
-         </ul>
+      <ul class="pagination pagination-sm">
+	      <%if(startPageNum != 1){ %>
+	         <li class="page-item"><a class="page-link" href="list.jsp?pageNum=<%=startPageNum-1 %>&condition=<%=condition %>&keyword=<%=encodedK %>">Prev</a></li>
+	      <%} %>
+	      <%for(int i=startPageNum; i<=endPageNum; i++){ %>
+	         <%if(i==pageNum){ %>
+	            <li class="page-item active"><a class="page-link" href="list.jsp?pageNum=<%=i %>&condition=<%=condition %>&keyword=<%=encodedK %>"><%=i %></a></li>
+	         <%}else{%>
+	            <li class="page-item"><a class="page-link" href="list.jsp?pageNum=<%=i %>&condition=<%=condition %>&keyword=<%=encodedK %>"><%=i %></a></li>
+	         <%} %>
+	      <%} %>   
+	      <%if(endPageNum < totalPageCount){ %>
+	         <li class="page-item"><a class="page-link" href="list.jsp?pageNum=<%=endPageNum+1 %>&condition=<%=condition %>&keyword=<%=encodedK %>">Next</a></li>
+	      <%} %>
+	  </ul>
          <%--&condition=<%=condition %>&keyword=<%= encodedK%> : 검색 기록이 그대로 유지되게 하는 파라미터 --%>
       </div>
 		<hr style="clear: left;"/>
